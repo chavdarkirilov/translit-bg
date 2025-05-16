@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <title>БГ → LAT Transliteration</title>
+  <style>
+    body { font-family: sans-serif; margin: 2em; max-width: 600px; }
+    textarea { width: 100%; height: 150px; margin-bottom: 1em; }
+    button { padding: 0.5em 1em; }
+  </style>
+</head>
+<body>
+  <h1>Транслитерация на български</h1>
+  <textarea id="input" placeholder="Въведете текст на кирилица..."></textarea>
+  <button onclick="transliterate()">Транслитерирай</button>
+  <textarea id="output" placeholder="Резултат на латиница..." readonly></textarea>
+
+  <script>
+    function transliterate() {
+      let input = document.getElementById("input").value;
+
+      const rules = [
+        [/ия/g, "ia"], [/Ия/g, "Ia"], [/ИЯ/g, "IA"],
+        [/А/g, "A"], [/а/g, "a"], [/Б/g, "B"], [/б/g, "b"],
+        [/В/g, "V"], [/в/g, "v"], [/Г/g, "G"], [/г/g, "g"],
+        [/Д/g, "D"], [/д/g, "d"], [/Е/g, "E"], [/е/g, "e"],
+        [/Ж/g, "Zh"], [/ж/g, "zh"], [/З/g, "Z"], [/з/g, "z"],
+        [/И/g, "I"], [/и/g, "i"], [/Й/g, "Y"], [/й/g, "y"],
+        [/К/g, "K"], [/к/g, "k"], [/Л/g, "L"], [/л/g, "l"],
+        [/М/g, "M"], [/м/g, "m"], [/Н/g, "N"], [/н/g, "n"],
+        [/О/g, "O"], [/о/g, "o"], [/П/g, "P"], [/п/g, "p"],
+        [/Р/g, "R"], [/р/g, "r"], [/С/g, "S"], [/с/g, "s"],
+        [/Т/g, "T"], [/т/g, "t"], [/У/g, "U"], [/у/g, "u"],
+        [/Ф/g, "F"], [/ф/g, "f"], [/Х/g, "H"], [/х/g, "h"],
+        [/Ц/g, "Ts"], [/ц/g, "ts"], [/Ч/g, "Ch"], [/ч/g, "ch"],
+        [/Ш/g, "Sh"], [/ш/g, "sh"], [/Щ/g, "Sht"], [/щ/g, "sht"],
+        [/Ъ/g, "A"], [/ъ/g, "a"], [/Ь/g, ""], [/ь/g, ""],
+        [/Ю/g, "Yu"], [/ю/g, "yu"], [/Я/g, "Ya"], [/я/g, "ya"]
+      ];
+
+      for (const [pattern, replacement] of rules) {
+        input = input.replace(pattern, replacement);
+      }
+
+      document.getElementById("output").value = input;
+    }
+  </script>
+</body>
+</html>
